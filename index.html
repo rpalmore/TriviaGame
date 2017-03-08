@@ -12,7 +12,7 @@
 
 <body>
 
-<div class="container-fluid text-center">
+<div class="container-fluid">
 	<nav class="navbar navbar-default">
   		<div class="container-fluid">
     		<div class="navbar-header">
@@ -35,34 +35,52 @@
 
 	<header>(Some fun trivia game name)</header>
 
-	<button id="start">Let's Go!</button>
+	<div class="main text-center">
 
-	<p>Time Remaining: <span id="clock"></span></p>
+		<div class="start">
+
+			<button><span id="startButton">Let's Play!</button>
+
+		</div>
+
+		<div class="play">
+
+			<div class="timer">
+
+				<p><span id="timer"></span></p>
+
+			</div>
 	
-	<div class="question">
-		<p><span id="question"></span></p>
-	</div>
+			<div class="question">
 
-	<div class="choices">
-		<button id="choice-a"></button>
-		<button id="choice-b"></button>
-		<button id="choice-c"></button>
-		<button id="choice-d"></button>
-	</div>
+				<p><span id="question"></span></p>
 
-	<div class="correct-choice">
-	</div>
+			</div>
 
-	<div class="incorrect-choice">
-	</div>
+			<div class="choices">
+<!-- 			<button id="choice-a"></button>
+				<button id="choice-b"></button>
+				<button id="choice-c"></button>
+				<button id="choice-d"></button> -->
+			</div>
 
-	<div class="timer-up">
-	</div>
+		</div>
 
-	<div class="game-over">
-		<p><span id="wins"></span></p>
-		<p><span id="losses"></span></p>
-		<p><span id="unanswered"></span></p>
+		<div class="correct-choice">
+		</div>
+
+		<div class="incorrect-choice">
+		</div>
+
+		<div class="timer-up">
+		</div>
+
+		<div class="game-over">
+			<p><span id="wins"></span></p>
+			<p><span id="losses"></span></p>
+			<p><span id="unanswered"></span></p>
+		</div>
+
 	</div>
 
 	<div class="panel-footer text-center">
@@ -72,6 +90,8 @@
   	</div>
 
 </div>
+
+<script src="assets/javascript/app.js"></script>
 
 </body>
 </html>
