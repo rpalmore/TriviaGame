@@ -20,6 +20,11 @@ var q3Choices = ["Q3 choice 1", "Q3 choice 2", "Q3 choice 3", "Q3 choice 4",]
 var q4Choices = ["Q4 choice 1", "Q4 choice 2", "Q4 choice 3", "Q4 choice 4",]
 var q5Choices = ["Q5 choice 1", "Q5 choice 2", "Q5 choice 3", "Q5 choice 4",]
 
+var correctChoices = ["Q1 choice 1", "Q2 choice 2", "Q3 choice 1", "Q4 choice 1", 
+"Q5 choice 1"]
+
+var userGuess = [];
+
 // var timer = {
 // 	time: 30
 // }
@@ -46,6 +51,23 @@ $("#startButton").click(function() {
 	})
 };
 
+function selectChoice () {
+	
+	if (correctChoices.includes(userGuess)) {
+		$(".correct-choice").text("You're correct!")
+	} else {
+		$(".incorrect-choice").text("Whoops! That's not right.");
+	}
+};
+
+// if (condition) {
+//     block of code to be executed if the condition is true
+// } else { 
+//     block of code to be executed if the condition is false
+// }
+
+selectChoice ();
+
 startGame();
 
 // Need to add timer functionality. (Consult Interval lesson from 3/4.)
@@ -62,7 +84,9 @@ var intervalID;
 // THIS IS NOT WORKING YET
 
 // $("<p><button>" + q1Choices[0] + "</button></p>").on("click", stop);
-$("<button>").on("click", stop);
+
+
+$(".choices").on("click", stop);
 
 
 // The "run" function sets an interval and decrements counter once/second
@@ -85,3 +109,4 @@ function decrement () {
 function stop() {
 	clearInterval(intervalID);
 }
+
