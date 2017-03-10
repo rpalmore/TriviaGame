@@ -6,6 +6,11 @@
 4. Start button
 
 */
+    
+$( document ).ready(function() {
+    console.log( "ready!" );
+});
+
 
 var questions = ["Question 1", "Question 2", "Question 3", "Question 4", "Question 5"]
 
@@ -33,8 +38,7 @@ function startGame () {
 $("#startButton").click(function() {
 	$(".start").remove();
 	run();
-	// $("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
-	// $("#timer").text(timer);
+	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
 	$("#question").text("Question 1");
 	for (var i = 0; i < 4; i++) {
 	$("<p><button>" + q1Choices[i] + "</button></p>").appendTo(".choices");
@@ -58,7 +62,7 @@ var intervalID;
 // THIS IS NOT WORKING YET
 
 // $("<p><button>" + q1Choices[0] + "</button></p>").on("click", stop);
-$("button").on("click", stop);
+$("<button>").on("click", stop);
 
 
 // The "run" function sets an interval and decrements counter once/second
@@ -81,4 +85,3 @@ function decrement () {
 function stop() {
 	clearInterval(intervalID);
 }
-
