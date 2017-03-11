@@ -20,8 +20,11 @@ var q3Choices = ["Q3 choice 1", "Q3 choice 2", "Q3 choice 3", "Q3 choice 4",]
 var q4Choices = ["Q4 choice 1", "Q4 choice 2", "Q4 choice 3", "Q4 choice 4",]
 var q5Choices = ["Q5 choice 1", "Q5 choice 2", "Q5 choice 3", "Q5 choice 4",]
 
-var correctChoices = ["Q1 choice 1", "Q2 choice 2", "Q3 choice 1", "Q4 choice 1", 
-"Q5 choice 1"]
+// var correctChoices = ["Q1 choice 1", "Q2 choice 2", "Q3 choice 1", "Q4 choice 1", 
+// "Q5 choice 1"]
+
+var correctChoices = (q1Choices[0], q2Choices[0], q3Choices[0], q4Choices[0], 
+q5Choices[0]);
 
 var userGuess = [];
 
@@ -36,7 +39,8 @@ When user clicks "start," the following will happen:
 	Start button will be hidden/replaced with
 		1. Question 1 x
 		2. 4 buttons showing possibile choices x
-		3. Timer x
+		3. Timer starts x
+
 */
 
 function startGame () {
@@ -51,62 +55,62 @@ $("#startButton").click(function() {
 	})
 };
 
-function selectChoice () {
-	
-	if (correctChoices.includes(userGuess)) {
-		$(".correct-choice").text("You're correct!")
-	} else {
-		$(".incorrect-choice").text("Whoops! That's not right.");
-	}
-};
+// Step two: Stop timer when user clicks on any "choices" button x
 
-// if (condition) {
-//     block of code to be executed if the condition is true
-// } else { 
-//     block of code to be executed if the condition is false
-// }
-
-selectChoice ();
-
-startGame();
-
-// Need to add timer functionality. (Consult Interval lesson from 3/4.)
-
-// Set timer to 30
-
+// Set timer to 30 seconds
 var timer = 30;
-
 // Variable to hold interval ID
-
 var intervalID;
-
-// When the user clicks a choices button, stop the timer
-// THIS IS NOT WORKING YET
-
-// $("<p><button>" + q1Choices[0] + "</button></p>").on("click", stop);
-
-
+// click event
 $(".choices").on("click", stop);
-
-
-// The "run" function sets an interval and decrements counter once/second
-
+// The "run" function sets an interval and decrements counter by one per second
 function run() {
 	intervalID = setInterval(decrement, 1000);
 }
-
 // The decrement function
-
 function decrement () {
 	timer--;
-// Show timer in DOM
+// Replace timer with this one that is counting down
 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
 	if (timer === 0) {
 		stop();
 	}
 }
-
+// stop function
 function stop() {
 	clearInterval(intervalID);
 }
+
+// Step three: Dynamically create new div and append to "correctChoice" if user picks correctly
+
+$(".choices").click(function() {
+$(".choices, #question").remove();
+var winningAnswer = $("<div>");
+winningAnswer.addClass("test")
+var losingAnswer = $("<div>");
+winningAnswer.addClass("test")
+// if user selects winning answer, do this:
+
+winningAnswer.text("You win!");
+$(".correctChoice").append(winningAnswer);
+// else, do this:
+
+winningAnswer.text("You lose!");
+$(".correctChoice").append(losingAnswer);
+console.log($(this));
+console.log(this);
+console.log(correctChoices[0]);
+console.log(q1Choices[0]);
+});
+
+startGame();
+
+
+
+
+
+
+
+
+
 
