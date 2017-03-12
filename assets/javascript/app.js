@@ -20,13 +20,13 @@ var q3Choices = ["Q3 choice 1", "Q3 choice 2", "Q3 choice 3", "Q3 choice 4",]
 var q4Choices = ["Q4 choice 1", "Q4 choice 2", "Q4 choice 3", "Q4 choice 4",]
 var q5Choices = ["Q5 choice 1", "Q5 choice 2", "Q5 choice 3", "Q5 choice 4",]
 
-// var correctChoices = ["Q1 choice 1", "Q2 choice 2", "Q3 choice 1", "Q4 choice 1", 
-// "Q5 choice 1"]
+var correctChoices = ["Q1 choice 1", "Q2 choice 1", "Q3 choice 1", "Q4 choice 1", 
+"Q5 choice 1"]
 
-var correctChoices = [q1Choices[0], q2Choices[0], q3Choices[0], q4Choices[0], 
-q5Choices[0]];
+// var correctChoices = [q1Choices[0], q2Choices[0], q3Choices[0], q4Choices[0], 
+// q5Choices[0]];
 console.log(correctChoices);
-console.log(correctChoices[0]);
+// console.log(correctChoices[0]);
 
 var userGuess = [];
 
@@ -68,32 +68,115 @@ When user clicks "start," the following will happen:
 // }
 // });
 
-// THIS IS ALSO WORKING CODE
+
+/* 
+When user clicks "start," do the following:
+	1. Remove start button
+	2. Display decrementing timer
+	3. Display question 1
+	4. Dynamically create 4 buttons showing choice options
+	5. On button click, store value of button index
+	6. Stop timer
+	7. Declare index of winning choice
+	8. Compare index of selected button with index of correct choice
+*/
+
+// WORKING CODE DO NOT EDIT
+// function startGame () {
+// $("#startButton").click(function() {
+// 	// Here is step 1
+// 	$(".start").remove();
+// 	// Step 2
+// 	runTimer();
+// 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
+// 	// Step 3
+// 	$("#question").text("Question 1");
+// 	// Step 4
+// 	for (var i = 0; i < q1Choices.length; i++) {
+// 	$("<button>" + q1Choices[i] + "</button>").appendTo(".choices");
+// 	// Step 5
+// 	$("button").eq(i).on("click", {value: i}, function(event) {
+// 	// Step 6
+// 	var winningChoice = (correctChoices.indexOf("Q1 choice 1"));
+// 	// Step 7
+// 	if ($(this).index() == winningChoice) {
+// 		console.log("Fuck yeah!");
+// 	} else {
+// 		console.log("Ugh. You lose!");
+// 	}
+// })
+// }
+// })
+// };
+
+// ADD TO WORKING CODE
+
+var winningAnswer = $("<div>");
+winningAnswer.addClass("test")
+winningAnswer.text("You win!");
+
+var losingAnswer = $("<div>");
+losingAnswer.addClass("test")
+losingAnswer.text("You lose!");
+
+var winCounter = 0;
+var lossCounter = 0;
+var unanswered = 0;
+
+// THIS IS WORKING
 function startGame () {
 $("#startButton").click(function() {
+	// Here is step 1
 	$(".start").remove();
+	// Step 2
 	runTimer();
 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
+	// Step 3
 	$("#question").text("Question 1");
+	// Step 4
 	for (var i = 0; i < q1Choices.length; i++) {
 	$("<button>" + q1Choices[i] + "</button>").appendTo(".choices");
-	console.log(q1Choices[i]);
-	$( "button" ).eq( i ).on( "click", { value: i }, function( event ) {
-    console.log("button = " + $(this).index());
-    // if ($(this).index() == q1Choices.index) {
-    // 	console.log("Yeah!!!!");
-    }
-})
+	// Step 5
+	$("button").eq(i).on("click", {value: i}, function(event) {
+	// Step 6
+	stop ();
+	// Step 7
+	var winningChoice = (correctChoices.indexOf("Q1 choice 1"));
+	// Step 8
+	if ($(this).index() == winningChoice) {
+		$("#question").text("Correct!");
+		$(".choices").remove();
+		$(".correctChoice").append(winningAnswer);
+		winCounter++;
+		console.log("this is win counter " + winCounter);
+		reset();
+	} else {
+		$("#question").text("Nope!");
+		// add correct answer to div somewhere
+		$(".choices").remove();
+		$(".incorrectChoice").append(losingAnswer);
+		lossCounter++;
+		console.log("this is loss counter " + lossCounter);
+	}
+});
 }
 })
 };
 
-// $(".choices, #buttons").on("click", function(){
+// Need advance/reset function
 
-// 	console.log("I was clicked!");
-// })
-/* Step two: Capture the click event data
-*/
+function reset () {
+	timer = 10;
+	$(".correctChoice").empty();
+	$(".incorrectChoice").empty();
+	runTimer();
+	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
+	$("#question").text("Question 2");
+	startGame();
+	}
+
+
+// if($('#nextractor').length < 0)
 
 /* Step three: Dynamically create new div and append to "correctChoice" 
 if user picks correctly
@@ -101,7 +184,7 @@ if user picks correctly
 // var winningAnswer = $("<div>");
 // winningAnswer.addClass("test")
 // var losingAnswer = $("<div>");
-// winningAnswer.addClass("test")
+// losintAnswer.addClass("test")
 // // if user selects winning answer, do this:
 
 // winningAnswer.text("You win!");
@@ -110,20 +193,19 @@ if user picks correctly
 
 // winningAnswer.text("You lose!");
 // $(".correctChoice").append(losingAnswer);
-// console.log($(this));
-// console.log(this);
-// console.log(correctChoices[0]);
-// console.log(q1Choices[0]);
 // });
 
 // Step four: Stop timer when user clicks on any "choices" button x
 
 // Set timer to 30 seconds
-var timer = 30;
+
+var timer = 10;
 // Variable to hold interval ID
 var intervalID;
 // click event
-$(".choices").on("click", stop);
+// $("button").on("click", stop);
+// $(".choices, #buttons").on("click", stop);
+
 // The "run" function sets an interval and decrements counter by one per second
 function runTimer() {
 	intervalID = setInterval(decrement, 1000);
@@ -135,6 +217,13 @@ function decrement () {
 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
 	if (timer === 0) {
 		stop();
+		console.log("Time's up!!!")
+		$("#question").text("Time's up!!!");
+		// add correct answer to div somewhere
+		$(".choices").remove();
+		$(".incorrectChoice").append(losingAnswer);
+		unanswered++;
+		console.log("this is unasnwered counter " + unanswered);
 	}
 }
 // stop function
