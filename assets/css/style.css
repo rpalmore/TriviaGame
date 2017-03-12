@@ -7,3 +7,11 @@ header {
 .test {
 	background-color: red;
 }
+
+.button {
+	width: 100%;
+}
+
+.button-color {
+	background-color: red;
+}
