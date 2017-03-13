@@ -46,7 +46,7 @@ function roundOne() {
 	$("#question").text(questions[0]);
 	for (var i = 0; i < q1Choices.length; i++) {
 	$("<button>" + q1Choices[i] + "</button>").appendTo(".choices");
-}
+	}
 	compareClickValues();
 };
 
@@ -55,7 +55,7 @@ function roundTwo () {
 	$("#question").text(questions[1])
 	for (var i = 0; i < q2Choices.length; i++) {
 	$("<button>" + q2Choices[i] + "</button>").appendTo(".choices");
-}
+	}
 	compareClickValues2();
 };
 
@@ -64,18 +64,41 @@ function roundThree () {
 	$("#question").text(questions[2])
 	for (var i = 0; i < q3Choices.length; i++) {
 	$("<button>" + q3Choices[i] + "</button>").appendTo(".choices");
-}
+	}
 	compareClickValues3();
 };
 
-// WORKING FUNCTION DO NOT EDIT
-function compareClickValues() {
-	for (var i = 0; i < q1Choices.length; i++)
-	$("button").eq(i).on("click", {value: i}, function(event) {
-	stop ();
-	var winningChoice = (solutions.indexOf("The correct answer was: Q1 choice 1"));
+function roundFour () {
+	startTimer();
+	$("#question").text(questions[3])
+	for (var i = 0; i < q4Choices.length; i++) {
+	$("<button>" + q4Choices[i] + "</button>").appendTo(".choices");
+	}
+	compareClickValues4();
+};
 
-	if ($(this).index() == winningChoice) {
+function roundFive () {
+	startTimer();
+	$("#question").text(questions[4])
+	for (var i = 0; i < q4Choices.length; i++) {
+	$("<button>" + q5Choices[i] + "</button>").appendTo(".choices");
+	}
+	compareClickValues5();
+};
+
+function displayScore () {
+	// startTimer();
+	// $("#question").text(questions[4])
+	// for (var i = 0; i < q4Choices.length; i++) {
+	// $("<button>" + q5Choices[i] + "</button>").appendTo(".choices");
+	// }
+	// compareClickValues5();
+};
+// TRY AND WRITE ONE FUNCTION FOR ALL OF THIS
+function compareClickValues() {
+$("button").on("click", function() {
+	stop ();
+	if ($(this).index() == 0) {
 		$("#question").text("Correct!");
 		$("button").hide();
 		$("#question").append(winningAnswer);
@@ -84,7 +107,7 @@ function compareClickValues() {
 	} else {
 		$("#question").text("Nope!");
 		$("button").hide();
-		$("<p>" + solutions[0] + "</p>").appendTo("#question");
+		$("<p>" + solutions[1] + "</p>").appendTo("#question");
 		$("#question").append(winningAnswer);
 		lossCounter++;
 		setTimeout(roundTwo, 1000 * 3);
@@ -92,64 +115,84 @@ function compareClickValues() {
   })
 }
 
-// TESTING NEW CODE HERE
+// NEW WORKING CODE
 function compareClickValues2() {
 $("button").on("click", function() {
-	console.log("I clicked a button!");
-	stop();
-	console.log(this);
-	if (this == "Q2 choice 1") {
-		console.log("Holy moly!!!");
-	}
-  })
-}
-// END OF TEST
-
-// // WORKING FUNCTION DO NOT EDIT
-// function compareClickValues2() {
-// 	for (var i = 0; i < q2Choices.length; i++)
-// 	$("button").eq(i).on("click", {value: i}, function(event) {
-// 	stop ();
-// 	console.log("I got clicked!!");
-// 	var winningChoice = (solutions.indexOf("In fact, Q2 choice 1"));
-
-// 	if ($(this).index() == winningChoice) {
-// 		$("#question").text("Correct!");
-// 		$("button").hide();
-// 		$("#question").append(winningAnswer);
-// 		winCounter++;
-// 		setTimeout(roundThree, 1000 * 3);
-
-// 	} else {
-// 		$("#question").text("Nope!");
-// 		$("button").hide();
-// 		$("<p>" + solutions[1] + "</p>").appendTo("#question");
-// 		$("#question").append(winningAnswer);
-// 		lossCounter++;
-// 		setTimeout(roundThree, 1000 * 3);
-// 	}
-//   })
-// }
-
-// WORKING FUNCTION DO NOT EDIT
-function compareClickValues3() {
-	for (var i = 0; i < q3Choices.length; i++)
-	$("button").eq(i).on("click", {value: i}, function(event) {
 	stop ();
-	var winningChoice = (solutions.indexOf("In fact, Q3 choice 1"));
-
-	if ($(this).index() == winningChoice) {
+	if ($(this).index() == 4) {
 		$("#question").text("Correct!");
 		$("button").hide();
 		$("#question").append(winningAnswer);
 		winCounter++;
+		setTimeout(roundThree, 1000 * 3);
+	} else {
+		$("#question").text("Nope!");
+		$("button").hide();
+		$("<p>" + solutions[1] + "</p>").appendTo("#question");
+		$("#question").append(winningAnswer);
+		lossCounter++;
+		setTimeout(roundThree, 1000 * 3);
+	}
+  })
+}
 
+// NEW WORKING CODE
+function compareClickValues3() {
+$("button").on("click", function() {
+	stop ();
+	if ($(this).index() == 8) {
+		$("#question").text("Correct!");
+		$("button").hide();
+		$("#question").append(winningAnswer);
+		winCounter++;
+		setTimeout(roundFour, 1000 * 3);
+	} else {
+		$("#question").text("Nope!");
+		$("button").hide();
+		$("<p>" + solutions[2] + "</p>").appendTo("#question");
+		$("#question").append(winningAnswer);
+		lossCounter++;
+		setTimeout(roundFour, 1000 * 3);
+	}
+  })
+}
+
+function compareClickValues4() {
+$("button").on("click", function() {
+	stop ();
+	if ($(this).index() == 12) {
+		$("#question").text("Correct!");
+		$("button").hide();
+		$("#question").append(winningAnswer);
+		winCounter++;
+		setTimeout(roundFive, 1000 * 3);
 	} else {
 		$("#question").text("Nope!");
 		$("button").hide();
 		$("<p>" + solutions[3] + "</p>").appendTo("#question");
 		$("#question").append(winningAnswer);
 		lossCounter++;
+		setTimeout(roundFive, 1000 * 3);
+	}
+  })
+}
+
+function compareClickValues5() {
+$("button").on("click", function() {
+	stop ();
+	if ($(this).index() == 16) {
+		$("#question").text("Correct!");
+		$("button").hide();
+		$("#question").append(winningAnswer);
+		winCounter++;
+		setTimeout(roundFour, 1000 * 3);
+	} else {
+		$("#question").text("Nope!");
+		$("button").hide();
+		$("<p>" + solutions[4] + "</p>").appendTo("#question");
+		$("#question").append(winningAnswer);
+		lossCounter++;
+		setTimeout(displayScore, 1000 * 3);
 	}
   })
 }
