@@ -8,19 +8,10 @@ header {
 	text-align: center;
 }
 
-.test {
-	background-color: red;
-}
-
-.button {
-	width: 25%;
-}
-
-.button-color {
-	background-color: red;
-}
-
-.main
-{
+.startButton {
 	margin-top: 20px;
+}
+
+.main {
+	martin-top: 20px;
 }

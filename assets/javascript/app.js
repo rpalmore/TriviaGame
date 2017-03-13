@@ -53,7 +53,7 @@ var lossCounter = 0;
 var unanswered = 0;
 
 function start() {
-	$(".startButton").append(giphy);
+	$(".main").prepend(giphy);
 	$("#startButton").on("click", function() {
 	$(".startButton").remove();
 	roundOne();
