@@ -9,9 +9,10 @@ header {
 }
 
 .button {
-	width: 100%;
+	width: 25%;
 }
 
 .button-color {
 	background-color: red;
 }
+
