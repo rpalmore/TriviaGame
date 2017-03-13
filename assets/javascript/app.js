@@ -53,9 +53,10 @@ var lossCounter = 0;
 var unanswered = 0;
 
 function start() {
-	$(".main").prepend(giphy);
+	$("#giphy").prepend(giphy);
 	$("#startButton").on("click", function() {
 	$(".startButton").remove();
+	$("#giphy").fadeOut();
 	roundOne();
   })
 }

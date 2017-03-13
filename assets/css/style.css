@@ -6,12 +6,23 @@ header {
 
 .subhead {
 	text-align: center;
+	margin-bottom: 20px;
 }
 
 .startButton {
 	margin-top: 20px;
 }
 
-.main {
-	martin-top: 20px;
+#startButton {
+	width: 100%;
+	margin-top: 20px;
+
+}
+
+#giphy {
+
+}
+
+button {
+	width: 100%;
 }
