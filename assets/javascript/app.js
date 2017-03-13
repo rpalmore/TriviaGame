@@ -25,15 +25,35 @@ When user clicks "start," do the following:
 	8. Compare index of selected button with index of correct choice
 */
 
-var winningAnswer = $("<img>");
-winningAnswer.attr("src", "assets/images/Trump.jpg");
+var giphy = $("<img>");
+giphy.attr("src", "assets/images/giphy.gif");
 
+
+var winningAnswer = $("<img>");
+var winningAnswer2 = $("<img>");
+var winningAnswer3 = $("<img>");
+var winningAnswer4 = $("<img>");
+var winningAnswer5 = $("<img>");
+
+winningAnswer.attr("src", "assets/images/Trump.jpg");
+winningAnswer2.attr("src", "assets/images/Chaplin.jpg");
+winningAnswer3.attr("src", "assets/images/Diller.jpg");
+winningAnswer4.attr("src", "assets/images/Hitchcock.jpg");
+winningAnswer5.attr("src", "assets/images/TinaFey.jpg");
+
+
+// var photos = ["assets/images/Trump.jpg", "assets/images/Chaplin.jpg"]
+// for (i = 0; i < photos.length; i++) {
+// 	console.log(photos[i]);
+// 	winningAnswer.attr("src", photos[i]);
+// }
 
 var winCounter = 0;
 var lossCounter = 0;
 var unanswered = 0;
 
 function start() {
+	$(".startButton").append(giphy);
 	$("#startButton").on("click", function() {
 	$(".startButton").remove();
 	roundOne();
@@ -41,6 +61,8 @@ function start() {
 }
 start();
 
+
+// WHAT IF WE DO A BIG FOR LOOP AROUND EVERYTHING AND USE I???
 function roundOne() {
 	startTimer();
 	$("#question").text(questions[0]);
@@ -88,12 +110,12 @@ function roundFive () {
 
 function displayScore () {
 	// startTimer();
-	// $("#question").text(questions[4])
+	$("#question").text(questions[4])
 	// for (var i = 0; i < q4Choices.length; i++) {
 	// $("<button>" + q5Choices[i] + "</button>").appendTo(".choices");
-	// }
+	}
 	// compareClickValues5();
-};
+// };
 // TRY AND WRITE ONE FUNCTION FOR ALL OF THIS
 function compareClickValues() {
 $("button").on("click", function() {
@@ -122,14 +144,14 @@ $("button").on("click", function() {
 	if ($(this).index() == 4) {
 		$("#question").text("Correct!");
 		$("button").hide();
-		$("#question").append(winningAnswer);
+		$("#question").append(winningAnswer2);
 		winCounter++;
 		setTimeout(roundThree, 1000 * 3);
 	} else {
 		$("#question").text("Nope!");
 		$("button").hide();
 		$("<p>" + solutions[1] + "</p>").appendTo("#question");
-		$("#question").append(winningAnswer);
+		$("#question").append(winningAnswer2);
 		lossCounter++;
 		setTimeout(roundThree, 1000 * 3);
 	}
@@ -143,14 +165,14 @@ $("button").on("click", function() {
 	if ($(this).index() == 8) {
 		$("#question").text("Correct!");
 		$("button").hide();
-		$("#question").append(winningAnswer);
+		$("#question").append(winningAnswer3);
 		winCounter++;
 		setTimeout(roundFour, 1000 * 3);
 	} else {
 		$("#question").text("Nope!");
 		$("button").hide();
 		$("<p>" + solutions[2] + "</p>").appendTo("#question");
-		$("#question").append(winningAnswer);
+		$("#question").append(winningAnswer3);
 		lossCounter++;
 		setTimeout(roundFour, 1000 * 3);
 	}
@@ -163,14 +185,14 @@ $("button").on("click", function() {
 	if ($(this).index() == 12) {
 		$("#question").text("Correct!");
 		$("button").hide();
-		$("#question").append(winningAnswer);
+		$("#question").append(winningAnswer4);
 		winCounter++;
 		setTimeout(roundFive, 1000 * 3);
 	} else {
 		$("#question").text("Nope!");
 		$("button").hide();
 		$("<p>" + solutions[3] + "</p>").appendTo("#question");
-		$("#question").append(winningAnswer);
+		$("#question").append(winningAnswer4);
 		lossCounter++;
 		setTimeout(roundFive, 1000 * 3);
 	}
@@ -183,14 +205,14 @@ $("button").on("click", function() {
 	if ($(this).index() == 16) {
 		$("#question").text("Correct!");
 		$("button").hide();
-		$("#question").append(winningAnswer);
+		$("#question").append(winningAnswer5);
 		winCounter++;
 		setTimeout(roundFour, 1000 * 3);
 	} else {
 		$("#question").text("Nope!");
 		$("button").hide();
 		$("<p>" + solutions[4] + "</p>").appendTo("#question");
-		$("#question").append(winningAnswer);
+		$("#question").append(winningAnswer5);
 		lossCounter++;
 		setTimeout(displayScore, 1000 * 3);
 	}
