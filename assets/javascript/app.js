@@ -25,9 +25,9 @@ When user clicks "start," do the following:
 	8. Compare index of selected button with index of correct choice
 */
 
-var winningAnswer = $("<div>");
-winningAnswer.addClass("test");
-winningAnswer.text("This will be winning image");
+var winningAnswer = $("<img>");
+winningAnswer.attr("src", "assets/images/Trump.jpg");
+
 
 var winCounter = 0;
 var lossCounter = 0;
