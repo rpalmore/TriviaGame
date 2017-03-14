@@ -119,7 +119,9 @@ function roundTwo () {
 	compareClickValues2();
 };
 
-// I know there's a better way to do this! 
+/*I know there's a better way to do this,
+but I don't know what it is yet!!!*/
+
 function roundThree () {
 	startTimer();
 	$("#question").text(questions[2])
@@ -156,7 +158,11 @@ function compareClickValues() {
 	stop ();
 	$("button").hide();
 	setTimeout(roundTwo, 1000 * 3);
-		// compare user choice with correct answer, run code
+		/* This comparison code using the index was the best 
+		I could do. I know it's far from elegant. It also
+		breaks after the first full game, as the indexes of the
+		winning answers change.
+		*/
 		if ($(this).index() == 1) {
 			$("#question").text("Correct!");
 			$("<p>" + solutions[0] + "</p>").appendTo("#question");
@@ -279,7 +285,7 @@ function startTimer(){
 	intervalID = setInterval(decrement, 1000);
 }
 
-// Decrement function
+// Decrement function -- this really messed me up!!
 function decrement() {
 	timer--;
 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
@@ -295,7 +301,31 @@ function decrement() {
 }
 }
 
-//testing here ... did not use these
+// The stop timer function
+function stop() {
+	clearInterval(intervalID);
+}
+
+// Adding in button hover elements
+$("button").hover(function(){
+    $(this).css("background-color", "#18c8e4");
+    }, function(){
+    $(this).css("background-color", "white");
+ });
+
+ // And some fun link hover decoration
+$("a").hover(function(){
+    $(this).css("background-color", "#18c8e4");
+     }, function(){
+    $(this).css("background-color", "white");
+});
+
+// END OF WORKING CODE
+
+/* Was testing here to fix the timer issue. Tried
+linking these to the decrement function but could not get
+past the first winning photo.*/
+
 function advanceRoundOne () {
 		$("<p>" + solutions[0] + "</p>").appendTo("#question");
 		$("#question").append(winningAnswer);
@@ -320,24 +350,8 @@ function advanceRoundFour () {
 		setTimeout(displayScore, 1000 * 3);
 }
 
-// The stop timer function
-function stop() {
-	clearInterval(intervalID);
-}
 
-// Adding in button hover elements
-$("button").hover(function(){
-    $(this).css("background-color", "#18c8e4");
-    }, function(){
-    $(this).css("background-color", "white");
- });
 
- // And some fun link hover decoration
-$("a").hover(function(){
-    $(this).css("background-color", "#18c8e4");
-     }, function(){
-    $(this).css("background-color", "white");
-});
 
 
 
