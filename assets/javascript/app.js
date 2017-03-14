@@ -273,7 +273,7 @@ var intervalID;
 
 // Set the clock and decrement by 1 per second
 function startTimer(){
-	timer = 3;
+	timer = 30;
 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
 	intervalID = setInterval(decrement, 1000);
 }
