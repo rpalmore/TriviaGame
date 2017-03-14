@@ -1,6 +1,11 @@
 $( document ).ready(function() {
 });
 
+/* Big miss here on not using an object. I watched the video 
+many times but didn't look at the grading rubric until Tuesday.
+I won't make that mistake again!
+*/
+
 // Here are all the lengthy quotes and choices.
 var questions = [
 '"One of the key problems today is that politics is such a disgrace.'
@@ -97,10 +102,6 @@ function roundOne() {
 	$("#question").text(questions[0]);
 	for (var i = 0; i < q1Choices.length; i++) {
 	$("<button>" + q1Choices[i] + "</button>").appendTo(".choices");
-	// if (timer === 0){
-	// 	console.log("Hallelujah!!!");
-	// 	// advanceRoundOne();
-	// }
 	}	
 	compareClickValues();
 };
