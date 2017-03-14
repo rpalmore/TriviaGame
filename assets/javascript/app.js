@@ -263,10 +263,25 @@ var intervalID;
 
 // Set the clock and decrement by 1 per second
 function startTimer(){
-	timer = 5;
+	timer = 3;
 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
 	intervalID = setInterval(decrement, 1000);
 }
+
+// Decrement function
+// function decrement() {
+// 	timer--;
+// 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
+// 	if (timer === 0) {
+// 		stop();
+// 		$("button").hide();
+// 		$("#question").text("Time's up!!!");
+// 		$("<p>" + solutions[0] + "</p>").appendTo("#question");
+// 		$("#question").append(winningAnswer);
+// 		unanswered++;
+// 		setTimeout(roundTwo, 1000 * 3);
+// 	}
+// }
 
 // Decrement function
 function decrement() {
@@ -275,12 +290,43 @@ function decrement() {
 	if (timer === 0) {
 		stop();
 		$("button").hide();
+		unanswered++;
 		$("#question").text("Time's up!!!");
+		// do (advanceRoundOne) {
+		// 	while (roundOne)
+		// while (roundOne) {
+		// 	console.log("Great!");
+		// 	advanceRoundOne();
+		// } while (roundTwo) {
+		// 	console.log("Great!");
+		// 	advanceRoundTwo();
+		// }
+		
+	}
+}
+//testing
+function advanceRoundOne () {
 		$("<p>" + solutions[0] + "</p>").appendTo("#question");
 		$("#question").append(winningAnswer);
-		unanswered++;
 		setTimeout(roundTwo, 1000 * 3);
-	}
+}
+
+function advanceRoundTwo () {
+		$("<p>" + solutions[1] + "</p>").appendTo("#question");
+		$("#question").append(winningAnswer2);
+		setTimeout(roundThree, 1000 * 3);
+}
+
+function advanceRoundThree () {
+		$("<p>" + solutions[2] + "</p>").appendTo("#question");
+		$("#question").append(winningAnswer3);
+		setTimeout(roundFour, 1000 * 3);
+}
+
+function advanceRoundFour () {
+		$("<p>" + solutions[3] + "</p>").appendTo("#question");
+		$("#question").append(winningAnswer4);
+		setTimeout(displayScore, 1000 * 3);
 }
 
 // The stop timer function
