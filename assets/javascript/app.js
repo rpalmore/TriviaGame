@@ -97,6 +97,10 @@ function roundOne() {
 	$("#question").text(questions[0]);
 	for (var i = 0; i < q1Choices.length; i++) {
 	$("<button>" + q1Choices[i] + "</button>").appendTo(".choices");
+	// if (timer === 0){
+	// 	console.log("Hallelujah!!!");
+	// 	// advanceRoundOne();
+	// }
 	}	
 	compareClickValues();
 };
@@ -107,6 +111,9 @@ function roundTwo () {
 	$("#question").text(questions[1])
 	for (var i = 0; i < q2Choices.length; i++) {
 	$("<button>" + q2Choices[i] + "</button>").appendTo(".choices");
+	if (timer === 0){
+		advanceRoundTwo();
+	}
 	}
 	compareClickValues2();
 };
@@ -117,6 +124,9 @@ function roundThree () {
 	$("#question").text(questions[2])
 	for (var i = 0; i < q3Choices.length; i++) {
 	$("<button>" + q3Choices[i] + "</button>").appendTo(".choices");
+	if (timer === 0) {
+		advanceRoundThree();
+	}
 	}
 	compareClickValues3();
 };
@@ -269,21 +279,6 @@ function startTimer(){
 }
 
 // Decrement function
-// function decrement() {
-// 	timer--;
-// 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
-// 	if (timer === 0) {
-// 		stop();
-// 		$("button").hide();
-// 		$("#question").text("Time's up!!!");
-// 		$("<p>" + solutions[0] + "</p>").appendTo("#question");
-// 		$("#question").append(winningAnswer);
-// 		unanswered++;
-// 		setTimeout(roundTwo, 1000 * 3);
-// 	}
-// }
-
-// Decrement function
 function decrement() {
 	timer--;
 	$("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
@@ -292,19 +287,14 @@ function decrement() {
 		$("button").hide();
 		unanswered++;
 		$("#question").text("Time's up!!!");
-		// do (advanceRoundOne) {
-		// 	while (roundOne)
-		// while (roundOne) {
-		// 	console.log("Great!");
-		// 	advanceRoundOne();
-		// } while (roundTwo) {
-		// 	console.log("Great!");
-		// 	advanceRoundTwo();
-		// }
-		
-	}
+		$("<p>" + solutions[0] + "</p>").appendTo("#question");
+		$("#question").append(winningAnswer);
+		unanswered++;
+		setTimeout(roundTwo, 1000 * 3);
 }
-//testing
+}
+
+//testing here ... did not use these
 function advanceRoundOne () {
 		$("<p>" + solutions[0] + "</p>").appendTo("#question");
 		$("#question").append(winningAnswer);
@@ -333,6 +323,7 @@ function advanceRoundFour () {
 function stop() {
 	clearInterval(intervalID);
 }
+
 // Adding in button hover elements
 $("button").hover(function(){
     $(this).css("background-color", "#18c8e4");
@@ -345,7 +336,7 @@ $("a").hover(function(){
     $(this).css("background-color", "#18c8e4");
      }, function(){
     $(this).css("background-color", "white");
- });
+});
 
 
 
