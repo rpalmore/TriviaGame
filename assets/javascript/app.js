@@ -28,7 +28,6 @@ When user clicks "start," do the following:
 var giphy = $("<img>");
 giphy.attr("src", "assets/images/giphy.gif");
 
-
 var winningAnswer = $("<img>");
 var winningAnswer2 = $("<img>");
 var winningAnswer3 = $("<img>");
@@ -40,6 +39,20 @@ winningAnswer2.attr("src", "assets/images/Chaplin.jpg");
 winningAnswer3.attr("src", "assets/images/Diller.jpg");
 winningAnswer4.attr("src", "assets/images/Hitchcock.jpg");
 winningAnswer5.attr("src", "assets/images/TinaFey.jpg");
+
+// Adding in button hover elements
+$("button").hover(function(){
+    $(this).css("background-color", "#fafb10");
+    }, function(){
+    $(this).css("background-color", "white");
+ });
+
+ // And some fun link hover decoration
+$("a").hover(function(){
+    $(this).css("background-color", "#18c8e4");
+     }, function(){
+    $(this).css("background-color", "white");
+ });
 
 
 // var photos = ["assets/images/Trump.jpg", "assets/images/Chaplin.jpg"]
