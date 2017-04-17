@@ -9,6 +9,10 @@ body {
 	font-family: 'PT Sans', sans-serif;
 }
 
+li:hover {
+	background-color: #18c8e4;
+}
+
 header, .subhead {
 	font-family: 'Lato', sans-serif;
 	font-size: 45px;
@@ -34,12 +38,9 @@ header, .subhead {
 }
 
 .startButton {
-	margin-top: 40px;
-}
-
-#startButton {
-	width: 100%;
-	margin-top: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 50%;
 }
 
 
@@ -49,17 +50,15 @@ button {
 	margin-left: 25%;
 	padding: 15px;
 	font-size: 20px;
+	background-color: white;
 }
 
 button:hover {
 	transform: scale(1.1);
 	transition: all .2s ease-in-out;
 	border : 2px solid #7ac943;
+	background-color: #18c8e4;
 }
-
-/*#restart {
-
-}*/
 
 img {
 	width: 50%;
