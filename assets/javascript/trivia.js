@@ -10,7 +10,7 @@ The other decision that led you astray was that you did not provide yourself an 
 
 var round1 = {
     question: '"One of the key problems today is that politics is such a disgrace.' + ' Good people don’t go into government."',
-    choices: ["a", "b", "c", "donald trump"],
+    choices: ["Bill Maher", "Oprah Winfrey", "Ralph Nader", "Donald Trump"],
     answer: 3,
     solution: 'The 45th president of the United States called politics "a disgrace."',
     image: "assets/images/Trump.jpg",
@@ -19,16 +19,37 @@ var round1 = {
 var round2 = {
     question: '"A bachelor is a guy who never made the same mistake once."',
     answer: 1,
-    choices: ["a", "phyllis diller", "c", "d"],
+    choices: ["Jerry Seinfeld", "Phyllis Diller", "Johnny Carson", "Wanda Sykes"],
     solution: 'Phyllis Diller made her debut as a stand-up comedian at age 37.',
     image: "assets/images/Diller.jpg"
 }
 
-// var questions = [
-// '"One of the key problems today is that politics is such a disgrace.'
-// + ' Good people don’t go into government."', 
-// '"A bachelor is a guy who never made the same mistake once."', 
-// ]
+var round3 = {
+    question: '"Confidence is 10 percent hard work and 90 percent delusion."',
+    answer: 2,
+    choices: ["Woody Allen", "Dolly Parton", "Tina Fey", "Mark Twain"],
+    solution: 'The former "SNL" star who got her start at The Second City'
+            + ' once called Evanston home.',
+    image: "assets/images/TinaFey.jpg"
+}
+
+var round4 = {
+    question: '"Confidence is 10 percent hard work and 90 percent delusion."',
+    answer: 0,
+    choices: ["Alfred Hitchcock", "Orson Welles", "M. Night Shyamalan", "Stephen King"],
+    solution: 'The late "Master of Suspense" was a pioneer in the genres of'
+            + ' suspense and psychological thrillers.',
+    image: "assets/images/Hitchcock.jpg"
+}
+
+var round5 = {
+    question: '"Confidence is 10 percent hard work and 90 percent delusion."',
+    answer: 3,
+    choices: ["Steve Jobs", "Maya Angelou", "Confucius", "Charlie Chaplin"],
+    solution: 'The silent film icon was best known for his character "the tramp."',
+    image: "assets/images/Chaplin.jpg"
+}
+
 
 // var choices = [ ['Donald Trump', 'x', 'y', 'z'], ['Phyllis Diller', 'a', 'b', 'c'] ]
 
@@ -47,7 +68,6 @@ var round2 = {
 var giphy = $("<img>");
 giphy.attr("src", "assets/images/giphy.gif");
 
-
 // Assign counters for scores
 var winCounter = 0;
 var lossCounter = 0;
@@ -55,9 +75,6 @@ var unanswered = 0;
 
 // START FUNCTION
 function start() {
-    winCounter = 0;
-    lossCounter = 0;
-    unanswered = 0;
     $("#giphy").prepend(giphy);
     $("#startButton").on("click", function() {
         $(".startButton").remove();
@@ -68,11 +85,14 @@ function start() {
 start();
 
 function playGame() {
+    winCounter = 0;
+    lossCounter = 0;
+    unanswered = 0;
     startTimer();
     $("#question").text(round1.question);
     for (var i = 0; i < round1.choices.length; i++) {
-        $("<button>" + round1.choices[i] + "</button>").appendTo(".choices");
-    }
+        $("<button>" + round1.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
+            } compareClickValues();
 }
 
 
@@ -80,61 +100,131 @@ function compareClickValues() {
     $("button").on("click", function() {
         stop();
         $("button").hide();
-        // setTimeout(roundTwo, 1000 * 3);
-        // setTimeout(playGame, 1000 * 3);
-        if ($("this").index() === 3) {
+        setTimeout(playRoundTwo, 1000 * 3);
+            if ($(this).hasClass("correct3")) {
             $("#question").text("Correct!");
             winCounter++;
-            $("<p>" + solutions[0] + "</p>").appendTo("#question");
-            $("#question").append(winningAnswer);
+            $("<p>" + round1.solution + "</p>").appendTo("#question");
+            $("#question").append($("<img>").attr("src", "assets/images/Trump.jpg"));
         } else {
             $("#question").text("Nope!");
             lossCounter++;
-            $("<p>" + solutions[0] + "</p>").appendTo("#question");
-            $("#question").append(winningAnswer);
+             $("<p>" + round1.solution + "</p>").appendTo("#question")
+            $("#question").append($("<img>").attr("src", "assets/images/Trump.jpg"));
         }
     })
 }
 
-// function playGame() {
-// 	startTimer();
-// 		var i = 0;
-// 		$("#question").text(questions[i]);
-// 		for (var i = 0; i < choices[0].length; i++) {
-// 			$("<button>" + choices[0][i] + "</button>").appendTo(".choices");
-// 			console.log($("button"));
-// 				if ($("button").index() === 0) {
-// 					($("button").addClass("correct"));
-// 			}
-// 			// Check the index of button add class to that button
-// 			// Ethan says to add the class to i, rather than to a particular index,
-// 			// so that you can iterate through.
-// 			// there is a jQuery function (method?) to check the class; I will have
-// 			// to use "this" also.
-// 			// check this out: https://api.jquery.com/hasclass/
-// 			compareClickValues();
-// 		}
-// }
+function playRoundTwo() {
+    startTimer();
+    $("#question").text(round2.question);
+    for (var i = 0; i < round2.choices.length; i++) {
+        $("<button>" + round2.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
+            } compareClickValues2();
+}
 
-// function compareClickValues() {
-//   $("button").on("click", function() {
-// 	stop ();
-// 	$("button").hide();
-// 	// setTimeout(roundTwo, 1000 * 3);
-// 	// setTimeout(playGame, 1000 * 3);
-// 	if ($("button").hasClass("correct")) {
-// 			$("#question").text("Correct!");
-// 			winCounter++;
-// 			$("<p>" + solutions[0] + "</p>").appendTo("#question");
-// 			$("#question").append(winningAnswer);
-// 		} else {
-// 			$("#question").text("Nope!");
-// 			lossCounter++;
-// 			$("<p>" + solutions[0] + "</p>").appendTo("#question");
-// 			$("#question").append(winningAnswer);
-// 		}
-//   	})
-// }
+
+function compareClickValues2() {
+    $("button").on("click", function() {
+        stop();
+        $("button").hide();
+        setTimeout(playRoundThree, 1000 * 3);
+            if ($(this).hasClass("correct1")) {
+            $("#question").text("Correct!");
+            winCounter++;
+            $("<p>" + round2.solution + "</p>").appendTo("#question");
+            $("#question").append($("<img>").attr("src", "assets/images/Diller.jpg"));
+        } else {
+            $("#question").text("Nope!");
+            lossCounter++;
+             $("<p>" + round2.solution + "</p>").appendTo("#question")
+            $("#question").append($("<img>").attr("src", "assets/images/Diller.jpg"));
+        }
+    })
+}
+
+function playRoundThree() {
+    startTimer();
+    $("#question").text(round3.question);
+    for (var i = 0; i < round3.choices.length; i++) {
+        $("<button>" + round3.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
+            } compareClickValues3();
+}
+
+function compareClickValues3() {
+    $("button").on("click", function() {
+        stop();
+        $("button").hide();
+        setTimeout(playRoundFour, 1000 * 3);
+            if ($(this).hasClass("correct2")) {
+            $("#question").text("Correct!");
+            winCounter++;
+            $("<p>" + round3.solution + "</p>").appendTo("#question");
+            $("#question").append($("<img>").attr("src", "assets/images/TinaFey.jpg"));
+        } else {
+            $("#question").text("Nope!");
+            lossCounter++;
+             $("<p>" + round3.solution + "</p>").appendTo("#question")
+            $("#question").append($("<img>").attr("src", "assets/images/TinaFey.jpg"));
+        }
+    })
+}
+
+
+function playRoundFour() {
+    startTimer();
+    $("#question").text(round4.question);
+    for (var i = 0; i < round4.choices.length; i++) {
+        $("<button>" + round4.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
+            } compareClickValues4();
+}
+
+function compareClickValues4() {
+    $("button").on("click", function() {
+        stop();
+        $("button").hide();
+        setTimeout(playRoundFive, 1000 * 3);
+            if ($(this).hasClass("correct0")) {
+            $("#question").text("Correct!");
+            winCounter++;
+            $("<p>" + round4.solution + "</p>").appendTo("#question");
+            $("#question").append($("<img>").attr("src", "assets/images/Hitchcock.jpg"));
+        } else {
+            $("#question").text("Nope!");
+            lossCounter++;
+             $("<p>" + round4.solution + "</p>").appendTo("#question")
+            $("#question").append($("<img>").attr("src", "assets/images/Hitchcock.jpg"));
+        }
+    })
+}
+
+function playRoundFive() {
+    startTimer();
+    $("#question").text(round5.question);
+    for (var i = 0; i < round5.choices.length; i++) {
+        $("<button>" + round5.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
+            } compareClickValues5();
+}
+
+function compareClickValues5() {
+    $("button").on("click", function() {
+        stop();
+        $("button").hide();
+        setTimeout(displayScore, 1000 * 3);
+            if ($(this).hasClass("correct3")) {
+            $("#question").text("Correct!");
+            winCounter++;
+            $("<p>" + round5.solution + "</p>").appendTo("#question");
+            $("#question").append($("<img>").attr("src", "assets/images/Chaplin.jpg"));
+        } else {
+            $("#question").text("Nope!");
+            lossCounter++;
+             $("<p>" + round5.solution + "</p>").appendTo("#question")
+            $("#question").append($("<img>").attr("src", "assets/images/Chaplin.jpg"));
+        }
+    })
+}
+
 
 // GAME IS OVER
 function displayScore() {
@@ -148,19 +238,16 @@ function displayScore() {
         $("#losses").empty();
         $("#unanswered").empty();
         $("#restart").empty();
-        roundOne();
+        playGame();
     })
 }
 
-
-// TIMER: set countdown amount
 var timer = 20;
-// Variable to hold interval ID
 var intervalID;
 
 // Set the clock and decrement by 1 per second
 function startTimer() {
-    timer = 30;
+    timer = 5;
     $("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
     intervalID = setInterval(decrement, 1000);
 }
@@ -174,10 +261,10 @@ function decrement() {
         $("button").hide();
         unanswered++;
         $("#question").text("Time's up!!!");
-        $("<p>" + solutions[0] + "</p>").appendTo("#question");
-        $("#question").append(winningAnswer);
+        $("<p>" + round1.solution + "</p>").appendTo("#question");
+        $("#question").append($("<img>").attr("src", "assets/images/Trump.jpg"));
         unanswered++;
-        setTimeout(roundTwo, 1000 * 3);
+        setTimeout(playRoundTwo, 1000 * 3);
     }
 }
 
@@ -217,16 +304,3 @@ function advanceRoundFour() {
     setTimeout(displayScore, 1000 * 3);
 }
 
-
-
-var winningAnswer = $("<img>");
-var winningAnswer2 = $("<img>");
-var winningAnswer3 = $("<img>");
-var winningAnswer4 = $("<img>");
-var winningAnswer5 = $("<img>");
-
-winningAnswer.attr("src", "assets/images/Trump.jpg");
-winningAnswer2.attr("src", "assets/images/Diller.jpg");
-winningAnswer3.attr("src", "assets/images/TinaFey.jpg");
-winningAnswer4.attr("src", "assets/images/Hitchcock.jpg");
-winningAnswer5.attr("src", "assets/images/Chaplin.jpg");

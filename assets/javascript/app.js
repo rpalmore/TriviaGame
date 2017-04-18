@@ -114,9 +114,6 @@ function roundTwo () {
 	compareClickValues2();
 };
 
-/*I know there's a better way to do this,
-but I don't know what it is yet!!!*/
-
 function roundThree () {
 	startTimer();
 	$("#question").text(questions[2])
