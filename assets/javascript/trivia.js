@@ -49,22 +49,7 @@ var round5 = {
     solution: 'The silent film icon was best known for his character "the tramp."',
     image: "assets/images/Chaplin.jpg"
 }
-
-
-// var choices = [ ['Donald Trump', 'x', 'y', 'z'], ['Phyllis Diller', 'a', 'b', 'c'] ]
-
-// // You can refer to a nested index by using square brackets next to eachother
-// choices[0][0] //this refers to "Donald Trump"
-
-// var correctAnswer = [ 'Donald Trump', 'Phyllis Diller']
-
-// var solutions = [ 'The 45th president of the United States called politics "a disgrace."', 'Phyllis Diller made her debut as a stand-up comedian at age 37.']
-
-// var images = ["assets/images/Trump.jpg", "assets/images/Diller.jpg"]
-
-
-
-// IMAGE ELEMENT VARIABLES TO USE IN CODE BELOW	
+	
 var giphy = $("<img>");
 giphy.attr("src", "assets/images/giphy.gif");
 
@@ -89,10 +74,12 @@ function playGame() {
     lossCounter = 0;
     unanswered = 0;
     startTimer();
-    $("#question").text(round1.question);
+    $("#question").text(round1.question).addClass("round1");
     for (var i = 0; i < round1.choices.length; i++) {
         $("<button>" + round1.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
-            } compareClickValues();
+            } if (timer > 0) {
+                compareClickValues();
+            }
 }
 
 
@@ -117,12 +104,15 @@ function compareClickValues() {
 
 function playRoundTwo() {
     startTimer();
-    $("#question").text(round2.question);
+    $("#question").text(round2.question).addClass("round2").removeClass("round1");
     for (var i = 0; i < round2.choices.length; i++) {
         $("<button>" + round2.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
-            } compareClickValues2();
+            } if (timer > 0) {
+                compareClickValues2();
+            } else {
+                alertTime2();
+            }
 }
-
 
 function compareClickValues2() {
     $("button").on("click", function() {
@@ -145,7 +135,7 @@ function compareClickValues2() {
 
 function playRoundThree() {
     startTimer();
-    $("#question").text(round3.question);
+    $("#question").text(round3.question).addClass("round3").removeClass("round2");
     for (var i = 0; i < round3.choices.length; i++) {
         $("<button>" + round3.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
             } compareClickValues3();
@@ -173,7 +163,7 @@ function compareClickValues3() {
 
 function playRoundFour() {
     startTimer();
-    $("#question").text(round4.question);
+    $("#question").text(round4.question).addClass("round4").removeClass("round3");
     for (var i = 0; i < round4.choices.length; i++) {
         $("<button>" + round4.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
             } compareClickValues4();
@@ -200,7 +190,7 @@ function compareClickValues4() {
 
 function playRoundFive() {
     startTimer();
-    $("#question").text(round5.question);
+    $("#question").text(round5.question).addClass("round5").removeClass("round4");
     for (var i = 0; i < round5.choices.length; i++) {
         $("<button>" + round5.choices[i] + "</button>").appendTo(".choices").addClass("correct" + i);
             } compareClickValues5();
@@ -225,8 +215,84 @@ function compareClickValues5() {
     })
 }
 
+var timer = 20;
+var intervalID;
 
-// GAME IS OVER
+function startTimer() {
+    timer = 5;
+    $("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
+    intervalID = setInterval(decrement, 1000);
+}
+
+function decrement() {
+    timer--;
+    $("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
+    if (timer === 0) {
+        stop();
+        if ($("#question").hasClass("round1")) {
+            alertTime();
+        } else if ($("#question").hasClass("round2")) {
+            alertTime2();
+        } else if ($("#question").hasClass("round3")) {
+            alertTime3();
+        } else if ($("#question").hasClass("round4")) {
+            alertTime4();
+        } else if ($("#question").hasClass("round5")) {
+            alertTime5();
+        }
+    }
+}
+
+// The stop timer function
+function stop() {
+    clearInterval(intervalID);
+}
+
+function alertTime() {
+        $("button").hide();
+        unanswered++;
+        $("#question").text("Time's up!!!");
+        $("<p>" + round1.solution + "</p>").appendTo("#question");
+        $("#question").append($("<img>").attr("src", "assets/images/Trump.jpg"));
+        setTimeout(playRoundTwo, 1000 * 3);
+}
+
+function alertTime2() {
+        $("button").hide();
+        unanswered++;
+        $("#question").text("Time's up!!!");
+        $("<p>" + round2.solution + "</p>").appendTo("#question");
+        $("#question").append($("<img>").attr("src", "assets/images/Diller.jpg"));
+        setTimeout(playRoundThree, 1000 * 3);
+}
+
+function alertTime3() {
+        $("button").hide();
+        unanswered++;
+        $("#question").text("Time's up!!!");
+        $("<p>" + round3.solution + "</p>").appendTo("#question");
+        $("#question").append($("<img>").attr("src", "assets/images/TinaFey.jpg"));
+        setTimeout(playRoundFour, 1000 * 3);
+}
+
+function alertTime4() {
+        $("button").hide();
+        unanswered++;
+        $("#question").text("Time's up!!!");
+        $("<p>" + round4.solution + "</p>").appendTo("#question");
+        $("#question").append($("<img>").attr("src", "assets/images/Hitchcock.jpg"));
+        setTimeout(playRoundFive, 1000 * 3);
+}
+
+function alertTime5() {
+        $("button").hide();
+        unanswered++;
+        $("#question").text("Time's up!!!");
+        $("<p>" + round5.solution + "</p>").appendTo("#question");
+        $("#question").append($("<img>").attr("src", "assets/images/Chaplin.jpg"));
+        setTimeout(displayScore, 1000 * 3);
+}
+
 function displayScore() {
     $("#question").text("You made it! Here's how you did:")
     $("#wins").text("Correct answers: " + winCounter)
@@ -240,67 +306,5 @@ function displayScore() {
         $("#restart").empty();
         playGame();
     })
-}
-
-var timer = 20;
-var intervalID;
-
-// Set the clock and decrement by 1 per second
-function startTimer() {
-    timer = 5;
-    $("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
-    intervalID = setInterval(decrement, 1000);
-}
-
-// Decrement function -- this really messed me up!!
-function decrement() {
-    timer--;
-    $("#timer").text("Time remaining:" + (" ") + timer + (" ") + "seconds");
-    if (timer === 0) {
-        stop();
-        $("button").hide();
-        unanswered++;
-        $("#question").text("Time's up!!!");
-        $("<p>" + round1.solution + "</p>").appendTo("#question");
-        $("#question").append($("<img>").attr("src", "assets/images/Trump.jpg"));
-        unanswered++;
-        setTimeout(playRoundTwo, 1000 * 3);
-    }
-}
-
-// The stop timer function
-function stop() {
-    clearInterval(intervalID);
-}
-
-
-// END OF WORKING CODE
-
-/* Was testing here to fix the timer issue. Tried
-linking these to the decrement function but could not get
-past the first winning photo.*/
-
-function advanceRoundOne() {
-    $("<p>" + solutions[0] + "</p>").appendTo("#question");
-    $("#question").append(winningAnswer);
-    setTimeout(roundTwo, 1000 * 3);
-}
-
-function advanceRoundTwo() {
-    $("<p>" + solutions[1] + "</p>").appendTo("#question");
-    $("#question").append(winningAnswer2);
-    setTimeout(roundThree, 1000 * 3);
-}
-
-function advanceRoundThree() {
-    $("<p>" + solutions[2] + "</p>").appendTo("#question");
-    $("#question").append(winningAnswer3);
-    setTimeout(roundFour, 1000 * 3);
-}
-
-function advanceRoundFour() {
-    $("<p>" + solutions[3] + "</p>").appendTo("#question");
-    $("#question").append(winningAnswer4);
-    setTimeout(displayScore, 1000 * 3);
 }
 
